@@ -4,7 +4,7 @@ Reusable React UI component library.
 
 ## Installation
 
-npm install @shanoor/ui-library
+npm install @shanoorabdul/ui-library
 
 ## Usage
 
