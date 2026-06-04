@@ -5,6 +5,18 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
+    tailwindcss(),  
   ],
+
+ build: {
+  lib: {
+    entry: "src/index.ts",
+    fileName: "index",
+    formats: ["es"],
+  },
+
+    rollupOptions: {
+      external: ["react", "react-dom", "react/jsx-runtime"],
+    },
+  },
 });

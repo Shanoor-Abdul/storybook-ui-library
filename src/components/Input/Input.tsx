@@ -12,29 +12,23 @@ const Input = ({
   error = "",
   required = false,
 }: InputProps) => {
-  const inputId =
-    id ||
-    label.toLowerCase().replace(/\s+/g, "-");
+  const inputId = id || label.toLowerCase().replace(/\s+/g, "-");
 
   const baseClasses =
     "w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2";
 
-  const normalClasses =
-    "border-gray-300 focus:ring-blue-500";
+  const normalClasses = "border-gray-300 focus:ring-blue-500";
 
-  const errorClasses =
-    "border-red-500 focus:ring-red-500";
+  const errorClasses = "border-red-500 focus:ring-red-500";
 
-  const disabledClasses =
-    "bg-gray-100 cursor-not-allowed";
+  const disabledClasses = "bg-gray-100 cursor-not-allowed";
 
   return (
     <div className="mb-4">
-      <label
-        htmlFor={inputId}
-        className="block mb-1 font-medium"
-      >
+      <label htmlFor={inputId} className="block mb-1 font-medium">
         {label}
+
+        {required && <span className="ml-1 text-red-500">*</span>}
       </label>
 
       <input
@@ -42,9 +36,7 @@ const Input = ({
         type={type}
         placeholder={placeholder}
         value={value}
-        onChange={(e) =>
-          onChange?.(e.target.value)
-        }
+        onChange={(e) => onChange?.(e.target.value)}
         className={`
           ${baseClasses}
           ${error ? errorClasses : normalClasses}
@@ -54,17 +46,9 @@ const Input = ({
         required={required}
       />
 
-      {helperText && (
-        <p className="mt-1 text-sm text-gray-500">
-          {helperText}
-        </p>
-      )}
+      {helperText && <p className="mt-1 text-sm text-gray-500">{helperText}</p>}
 
-      {error && (
-        <p className="mt-1 text-sm text-red-500">
-          {error}
-        </p>
-      )}
+      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
     </div>
   );
 };

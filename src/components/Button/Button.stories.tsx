@@ -12,8 +12,7 @@ const meta: Meta<typeof Button> = {
   parameters: {
     docs: {
       description: {
-        component:
-          "Reusable button component used throughout the application.",
+        component: "Reusable button component used throughout the application.",
       },
     },
   },
