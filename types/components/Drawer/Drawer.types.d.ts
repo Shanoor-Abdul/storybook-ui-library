@@ -9,4 +9,5 @@ export interface DrawerProps {
     closeOnOverlayClick?: boolean;
     closeOnEsc?: boolean;
     onClose?: () => void;
+    className?: string;
 }

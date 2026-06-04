@@ -7,5 +7,6 @@ export interface ModalProps {
     size?: "sm" | "md" | "lg" | "xl";
     closeOnOverlayClick?: boolean;
     closeOnEsc?: boolean;
+    className?: string;
     onClose?: () => void;
 }

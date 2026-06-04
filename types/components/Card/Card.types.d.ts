@@ -6,4 +6,5 @@ export interface CardProps {
     footer?: ReactNode;
     variant?: "default" | "outlined";
     shadow?: "none" | "sm" | "md" | "lg";
+    className?: string;
 }

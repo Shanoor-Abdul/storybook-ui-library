@@ -8,4 +8,5 @@ export interface CheckboxProps {
     error?: string;
     disabled?: boolean;
     required?: boolean;
+    className?: string;
 }

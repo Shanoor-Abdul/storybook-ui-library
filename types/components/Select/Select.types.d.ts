@@ -1,6 +1,7 @@
 export interface SelectOption {
     value: string;
     label: string;
+    disabled?: boolean;
 }
 export interface SelectProps {
     id?: string;
@@ -13,4 +14,7 @@ export interface SelectProps {
     error?: string;
     disabled?: boolean;
     required?: boolean;
+    className?: string;
+    selectClassName?: string;
+    labelClassName?: string;
 }

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 export type ToastVariant = "success" | "error" | "warning" | "info";
 export type ToastPosition = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
 export interface ToastItem {
@@ -5,6 +6,12 @@ export interface ToastItem {
     message: string;
     variant: ToastVariant;
     duration?: number;
+    icon?: ReactNode;
+    className?: string;
+    action?: {
+        label: string;
+        onClick: () => void;
+    };
 }
 export interface ToastContextType {
     success: (message: string, duration?: number) => void;

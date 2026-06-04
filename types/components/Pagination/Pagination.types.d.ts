@@ -3,4 +3,6 @@ export interface PaginationProps {
     totalPages: number;
     onPageChange?: (page: number) => void;
     disabled?: boolean;
+    className?: string;
+    showFirstLast?: boolean;
 }

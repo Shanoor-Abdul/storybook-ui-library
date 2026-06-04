@@ -1,6 +1,7 @@
 export interface RadioOption {
     label: string;
     value: string;
+    disabled?: boolean;
 }
 export interface RadioGroupProps {
     id?: string;
@@ -14,4 +15,7 @@ export interface RadioGroupProps {
     required?: boolean;
     variant?: "primary" | "success" | "danger";
     size?: "sm" | "md" | "lg";
+    className?: string;
+    labelClassName?: string;
+    optionClassName?: string;
 }

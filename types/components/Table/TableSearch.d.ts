@@ -1,5 +1,3 @@
-interface TableSearchProps {
-    onSearch?: (searchTerm: string) => void;
-}
-declare const TableSearch: ({ onSearch }: TableSearchProps) => import("react").JSX.Element;
+import type { TableSearchProps } from "./Table.types";
+declare const TableSearch: React.FC<TableSearchProps>;
 export default TableSearch;

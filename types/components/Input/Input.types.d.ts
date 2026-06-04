@@ -9,4 +9,7 @@ export interface InputProps {
     error?: string;
     disabled?: boolean;
     required?: boolean;
+    className?: string;
+    inputClassName?: string;
+    labelClassName?: string;
 }

@@ -8,4 +8,7 @@ export interface SwitchProps {
     error?: string;
     disabled?: boolean;
     required?: boolean;
+    className?: string;
+    switchClassName?: string;
+    labelClassName?: string;
 }
