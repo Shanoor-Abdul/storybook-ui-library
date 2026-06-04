@@ -1,6 +1,6 @@
 {
-  "name": "@shanoor/ui-library",
-  "version": "1.0.0",
+  "name": "@shanoorabdul/ui-library",
+  "version": "1.0.1",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./types/index.d.ts",
