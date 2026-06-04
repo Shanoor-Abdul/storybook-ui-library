@@ -42,3 +42,18 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
+
+export const WithLeftIcon: Story = {
+  args: {
+    label: "Save",
+    variant: "secondary",
+    leftIcon: <span>✨</span>,
+  },
+};
+
+export const WithRightIcon: Story = {
+  args: {
+    label: "Next",
+    rightIcon: <span>→</span>,
+  },
+};

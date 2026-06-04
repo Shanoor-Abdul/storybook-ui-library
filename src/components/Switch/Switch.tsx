@@ -10,6 +10,9 @@ const Switch = ({
   error = "",
   disabled = false,
   required = false,
+  className = "",
+  switchClassName = "",
+  labelClassName = "",
 }: SwitchProps) => {
   const inputId = id || label.toLowerCase().replace(/\s+/g, "-");
 
@@ -42,18 +45,19 @@ const Switch = ({
   const currentSize = sizes[size];
 
   return (
-    <div className="mb-4">
+    <div className={className}>
       <div className="flex items-center gap-3">
         <label
           htmlFor={inputId}
           className={`
             relative inline-flex items-center
-            ${disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"}
+            ${disabled ? "opacity-50" : ""}
           `}
         >
           <input
             id={inputId}
             type="checkbox"
+            aria-label={label}
             className="sr-only peer"
             checked={checked}
             onChange={(e) => onChange?.(e.target.checked)}
@@ -71,6 +75,8 @@ const Switch = ({
               duration-200
 
               ${checked ? variants[variant] : "bg-gray-300"}
+
+              ${switchClassName}
             `}
           />
 
@@ -94,7 +100,7 @@ const Switch = ({
           />
         </label>
 
-        <label htmlFor={inputId} className="font-medium">
+        <label htmlFor={inputId} className={`font-medium ${labelClassName}`}>
           {label}
 
           {required && <span className="ml-1 text-red-500">*</span>}

@@ -32,12 +32,14 @@ export const ToastProvider = ({
       duration,
     };
 
-    setToasts((prev) => [...prev, toast]);
+    setToasts((prev) => [...prev, toast].slice(-5));
 
     setTimeout(() => {
       removeToast(id);
     }, duration);
+    
   };
+  
 
   const removeToast = (id: string) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));

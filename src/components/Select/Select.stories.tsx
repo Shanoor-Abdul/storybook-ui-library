@@ -10,7 +10,7 @@ const meta: Meta<typeof Select> = {
     docs: {
       description: {
         component:
-          "Reusable Select component used for displaying a list of options.",
+          "Reusable Select component supporting validation, helper text, disabled options and custom styling.",
       },
     },
   },
@@ -40,6 +40,7 @@ export const Default: Story = {
 export const Required: Story = {
   args: {
     label: "Select",
+    required: true,
     options: [
       { value: "option1", label: "Option 1" },
       { value: "option2", label: "Option 2" },
@@ -48,15 +49,21 @@ export const Required: Story = {
   },
 };
 
-export const Disabled: Story = {
+export const DisabledOption: Story = {
   args: {
-    label: "Select",
+    label: "Plan",
+
     options: [
-      { value: "option1", label: "Option 1" },
-      { value: "option2", label: "Option 2" },
-      { value: "option3", label: "Option 3" },
+      {
+        value: "free",
+        label: "Free",
+      },
+      {
+        value: "premium",
+        label: "Premium",
+        disabled: true,
+      },
     ],
-    disabled: true,
   },
 };
 
@@ -96,15 +103,25 @@ export const Error: Story = {
   },
 };
 
-export const CompleteExample: Story = {
+export const CustomStyling: Story = {
   args: {
-    label: "Select",
+    label: "Country",
+
+    className: "p-4",
+
+    labelClassName: "text-blue-600",
+
+    selectClassName: "bg-gray-100 border-blue-500",
+
     options: [
-      { value: "option1", label: "Option 1" },
-      { value: "option2", label: "Option 2" },
-      { value: "option3", label: "Option 3" },
+      {
+        value: "india",
+        label: "India",
+      },
+      {
+        value: "saudi",
+        label: "Saudi Arabia",
+      },
     ],
-    value: "option2",
-    error: "This field is required.",
   },
 };

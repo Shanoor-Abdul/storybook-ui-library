@@ -11,6 +11,9 @@ const Select = ({
   disabled = false,
   error = "",
   required = false,
+  className = "",
+  selectClassName = "",
+  labelClassName = "",
 }: SelectProps) => {
   const inputId = id || label.toLowerCase().replace(/\s+/g, "-");
 
@@ -27,8 +30,11 @@ const Select = ({
   const disabledClasses = "bg-gray-100 cursor-not-allowed";
 
   return (
-    <div className="mb-4">
-      <label htmlFor={inputId} className="block mb-1 font-medium">
+    <div className={className}>
+      <label
+        htmlFor={inputId}
+        className={`block mb-1 font-medium ${labelClassName}`}
+      >
         {label}
         {required && <span className="ml-1 text-red-500">*</span>}
       </label>
@@ -39,18 +45,24 @@ const Select = ({
         onChange={(e) => onChange?.(e.target.value)}
         disabled={disabled}
         required={required}
+        aria-label={label}
         aria-invalid={!!error}
         aria-describedby={error ? errorId : helperText ? helperId : undefined}
         className={`
           ${baseClasses}
           ${error ? errorClasses : normalClasses}
           ${disabled ? disabledClasses : ""}
+          ${selectClassName}
         `}
       >
         <option value="">{placeholder}</option>
 
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option
+            key={option.value}
+            value={option.value}
+            disabled={option.disabled}
+          >
             {option.label}
           </option>
         ))}

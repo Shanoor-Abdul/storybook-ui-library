@@ -1,20 +1,12 @@
-interface TableSearchProps {
-  onSearch?: (searchTerm: string) => void;
-}
+import type { TableSearchProps } from "./Table.types";
 
-const TableSearch = ({ onSearch }: TableSearchProps) => {
+const TableSearch: React.FC<TableSearchProps> = ({ onSearch, placeholder, className }) => {
   return (
     <input
       type="text"
-      placeholder="Search..."
+      placeholder={placeholder || "Search..."}
       onChange={(e) => onSearch?.(e.target.value)}
-      className="
-        w-full
-        border
-        rounded-md
-        px-3
-        py-2
-      "
+      className={`w-full border rounded-md px-3 py-2 ${className ?? ""}`}
     />
   );
 };

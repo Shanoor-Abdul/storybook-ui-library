@@ -23,6 +23,8 @@ const Table = ({
   pageSizeOptions = [10, 20, 50],
 
   emptyMessage = "No records found",
+  className = "",
+  tableClassName = "",
 
   onSearch,
   onPageChange,
@@ -91,11 +93,18 @@ const Table = ({
   }
 
   return (
-    <div className="space-y-4">
+    <div className={`space-y-4 ${className}`}>
       {searchable && <TableSearch onSearch={onSearch} />}
 
       <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-200">
+        <table
+          className={`
+          min-w-full
+          border
+          border-gray-200
+          ${tableClassName}
+        `}
+        >
           <TableHeader
             columns={columns}
             selectable={selectable}

@@ -1,6 +1,6 @@
 import type { BadgeProps } from "./Badge.types";
 
-const Badge = ({ children, variant = "primary", size = "md" }: BadgeProps) => {
+const Badge = ({ children, variant = "primary", size = "md", className }: BadgeProps) => {
   const variants = {
     primary: "bg-blue-100 text-blue-700",
 
@@ -29,6 +29,7 @@ const Badge = ({ children, variant = "primary", size = "md" }: BadgeProps) => {
 
         ${variants[variant]}
         ${sizes[size]}
+        ${className}
       `}
     >
       {children}

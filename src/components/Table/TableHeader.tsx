@@ -32,9 +32,10 @@ const TableHeader = ({
     <thead>
       <tr className="bg-gray-100">
         {selectable && (
-          <th className="border px-4 py-2">
+          <th scope="col" className="border px-4 py-2">
             <input
               type="checkbox"
+              aria-label="Select all rows"
               checked={allSelected}
               onChange={(e) => onSelectAll?.(e.target.checked)}
             />
@@ -45,23 +46,13 @@ const TableHeader = ({
           <th
             key={column.key}
             onClick={() => onSort?.(column)}
-            className={`
-  border
-  px-4
-  py-2
-
-  ${stickyHeader ? "sticky top-0 bg-gray-100 z-10" : ""}
-
-  ${
-    column.align === "center"
-      ? "text-center"
-      : column.align === "right"
-        ? "text-right"
-        : "text-left"
-  }
-
-  ${column.sortable ? "cursor-pointer" : ""}
-`}
+            className={`border px-4 py-2 ${stickyHeader ? "sticky top-0 bg-gray-100 z-10" : ""}
+            ${ column.align === "center"
+                ? "text-center"
+                : column.align === "right"
+                  ? "text-right"
+                  : "text-left"}
+            ${column.sortable ? "cursor-pointer" : ""}`}
           >
             {column.title}
 

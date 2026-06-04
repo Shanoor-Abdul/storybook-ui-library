@@ -16,4 +16,10 @@ export interface SwitchProps {
   disabled?: boolean;
 
   required?: boolean;
+
+  className?: string;
+
+  switchClassName?: string;
+
+  labelClassName?: string;
 }

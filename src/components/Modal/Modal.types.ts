@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-
 export interface ModalProps {
   open: boolean;
 
@@ -14,6 +13,8 @@ export interface ModalProps {
   closeOnOverlayClick?: boolean;
 
   closeOnEsc?: boolean;
+
+  className?: string;
 
   onClose?: () => void;
 }

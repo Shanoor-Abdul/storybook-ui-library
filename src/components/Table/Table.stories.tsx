@@ -94,47 +94,56 @@ const data = [
   },
 ];
 
-export const Default: Story = {
+export const CustomStyling: Story = {
   args: {
     rowKey: "id",
+
     columns,
+
     data,
 
     searchable: true,
 
     selectable: true,
 
-    striped: true,
+    tableClassName: "border-blue-300",
 
-    currentPage: 1,
+    headerClassName: "bg-blue-50",
 
-    totalRecords: 50,
+    rowClassName: "hover:bg-blue-50",
 
-    pageSize: 10,
+    cellClassName: "text-gray-700",
+  },
+};
+
+export const Empty: Story = {
+  args: {
+    rowKey: "id",
+
+    columns,
+
+    data: [],
+
+    emptyMessage: "No users found",
+
+    totalRecords: 0,
   },
 };
 
 export const Loading: Story = {
   args: {
+    rowKey: "id",
+
     columns,
 
     data: [],
 
     loading: true,
 
-    totalRecords: 0,
+    loadingText: "Fetching users...",
   },
 };
 
-export const Empty: Story = {
-  args: {
-    columns,
-
-    data: [],
-
-    totalRecords: 0,
-  },
-};
 
 export const WithoutSearch: Story = {
   args: {
@@ -160,11 +169,15 @@ export const WithoutSelection: Story = {
   },
 };
 
-export const CompleteExample: Story = {
+export const Default: Story = {
   args: {
+    rowKey: "id",
+
     columns,
 
     data,
+
+    loading: false,
 
     searchable: true,
 
@@ -181,5 +194,11 @@ export const CompleteExample: Story = {
     pageSize: 10,
 
     pageSizeOptions: [10, 20, 50],
+
+    emptyMessage: "No records found",
+
+    searchPlaceholder: "Search users...",
+
+    loadingText: "Loading users...",
   },
 };

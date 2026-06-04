@@ -4,4 +4,10 @@ export interface LoaderProps {
   variant?: "primary" | "success" | "danger";
 
   label?: string;
+
+  className?: string;
+
+  labelClassName?: string;
+
+  containerClassName?: string;
 }

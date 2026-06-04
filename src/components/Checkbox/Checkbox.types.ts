@@ -16,4 +16,6 @@ export interface CheckboxProps {
   disabled?: boolean;
 
   required?: boolean;
+
+  className?: string;
 }

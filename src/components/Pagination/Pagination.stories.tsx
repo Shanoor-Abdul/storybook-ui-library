@@ -11,7 +11,7 @@ const meta: Meta<typeof Pagination> = {
     docs: {
       description: {
         component:
-          "Reusable Pagination component used for navigating between pages of content.",
+          "Reusable Pagination component supporting page navigation, accessibility, large datasets and customizable styling.",
       },
     },
   },
@@ -39,20 +39,24 @@ export const Default: Story = {
   args: {
     currentPage: 1,
     totalPages: 5,
+    showFirstLast: true,
   },
 };
 
-export const MiddlePage: Story = {
+export const Centered: Story = {
   args: {
-    currentPage: 3,
-    totalPages: 10,
+    currentPage: 5,
+    totalPages: 20,
+
+    className: "justify-center",
   },
 };
 
-export const LastPage: Story = {
+export const LargeDataset: Story = {
   args: {
-    currentPage: 10,
-    totalPages: 10,
+    currentPage: 25,
+    totalPages: 100,
+    showFirstLast: true,
   },
 };
 

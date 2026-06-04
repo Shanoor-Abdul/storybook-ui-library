@@ -51,3 +51,26 @@ export const Right: Story = {
     </Tooltip>
   ),
 };
+
+export const LongContent = {
+  args: {
+    content:
+      "This is a longer tooltip content that wraps correctly and does not overflow.",
+    children: <button>Hover Me</button>,
+  },
+};
+
+export const CustomContent = {
+  args: {
+    content: (
+      <>
+        <strong>User Details</strong>
+        <br />
+        Admin Access
+      </>
+    ),
+    children: <button>Hover Me</button>,
+  },
+};
+
+

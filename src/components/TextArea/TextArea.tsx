@@ -14,30 +14,50 @@ const TextArea = ({
   disabled = false,
   error = "",
   required = false,
+  className = "",
+  textareaClassName = "",
+  labelClassName = "",
 }: TextAreaProps) => {
   const inputId = id || label.toLowerCase().replace(/\s+/g, "-");
 
   const helperId = `${inputId}-helper`;
+
   const errorId = `${inputId}-error`;
-
-  const minLengthError = minLength && value.length < minLength;
-
-  const maxLengthError = maxLength && value.length > maxLength;
 
   const baseClasses =
     "w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 resize-none";
 
-  const normalClasses = "border-gray-300 focus:ring-blue-500";
+  const normalClasses =
+    "border-gray-300 focus:ring-blue-500";
 
-  const errorClasses = "border-red-500 focus:ring-red-500";
+  const errorClasses =
+    "border-red-500 focus:ring-red-500";
 
-  const disabledClasses = "bg-gray-100 cursor-not-allowed";
+  const disabledClasses =
+    "bg-gray-100 cursor-not-allowed";
+
+  const validationError =
+    error ||
+    (minLength && value.length < minLength
+      ? `Minimum ${minLength} characters required`
+      : "") ||
+    (maxLength && value.length > maxLength
+      ? `Maximum ${maxLength} characters allowed`
+      : "");
 
   return (
-    <div className="mb-4">
-      <label htmlFor={inputId} className="block mb-1 font-medium">
+    <div className={className}>
+      <label
+        htmlFor={inputId}
+        className={`block mb-1 font-medium ${labelClassName}`}
+      >
         {label}
-        {required && <span className="ml-1 text-red-500">*</span>}
+
+        {required && (
+          <span className="ml-1 text-red-500">
+            *
+          </span>
+        )}
       </label>
 
       <textarea
@@ -50,45 +70,52 @@ const TextArea = ({
         onChange={(e) => onChange?.(e.target.value)}
         disabled={disabled}
         required={required}
-        aria-invalid={!!error}
-        aria-describedby={error ? errorId : helperText ? helperId : undefined}
+        aria-invalid={!!validationError}
+        aria-describedby={
+          validationError
+            ? errorId
+            : helperText
+            ? helperId
+            : undefined
+        }
         className={`
           ${baseClasses}
-          ${error ? errorClasses : normalClasses}
+          ${validationError ? errorClasses : normalClasses}
           ${disabled ? disabledClasses : ""}
+          ${textareaClassName}
         `}
       />
 
-      <div className="flex justify-between mt-1">
+      <div className="mt-1 flex justify-between items-start gap-2">
         <div>
-          {helperText && !error && (
-            <p id={helperId} className="text-sm text-gray-500">
+          {!validationError && helperText && (
+            <p
+              id={helperId}
+              className="text-sm text-gray-500"
+            >
               {helperText}
             </p>
           )}
 
-          {error && (
-            <p id={errorId} className="text-sm text-red-500">
-              {error}
+          {validationError && (
+            <p
+              id={errorId}
+              className="text-sm text-red-500"
+            >
+              {validationError}
             </p>
           )}
         </div>
 
         {showCharacterCount && maxLength && (
-          <p className="text-sm text-gray-400">
-            {value?.length || 0} / {maxLength}
-          </p>
-        )}
-
-        {minLengthError && (
-          <p id={errorId} className="text-sm text-red-500">
-            Minimum {minLength} characters required
-          </p>
-        )}
-
-        {maxLengthError && (
-          <p id={errorId} className="text-sm text-red-500">
-            Maximum {maxLength} characters allowed
+          <p
+            className={`text-sm ${
+              value.length > maxLength
+                ? "text-red-500"
+                : "text-gray-400"
+            }`}
+          >
+            {value.length} / {maxLength}
           </p>
         )}
       </div>

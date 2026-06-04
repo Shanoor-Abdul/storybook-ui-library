@@ -18,4 +18,6 @@ export interface DrawerProps {
   closeOnEsc?: boolean;
 
   onClose?: () => void;
+
+  className?: string;
 }

@@ -11,6 +11,7 @@ const Drawer = ({
   closeOnOverlayClick = true,
   closeOnEsc = true,
   onClose,
+  className,
 }: DrawerProps) => {
   useEffect(() => {
     if (!closeOnEsc) return;
@@ -68,6 +69,7 @@ const Drawer = ({
           ${placements[placement]}
 
           ${placement === "left" || placement === "right" ? sizes[size] : ""}
+          ${className}
         `}
       >
         {(title || onClose) && (

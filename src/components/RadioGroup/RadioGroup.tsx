@@ -12,6 +12,9 @@ const RadioGroup = ({
   error = "",
   disabled = false,
   required = false,
+  className = "",
+  labelClassName = "",
+  optionClassName = "",
 }: RadioGroupProps) => {
   const inputId = id || label.toLowerCase().replace(/\s+/g, "-");
 
@@ -30,28 +33,39 @@ const RadioGroup = ({
   };
 
   return (
-    <div className="mb-4">
-      <label className="block mb-2 font-medium">
+    <div className={className}>
+      <label className={`block mb-2 font-medium ${labelClassName}`}>
         {label}
         {required && <span className="ml-1 text-red-500">*</span>}
       </label>
 
-      <div className="flex flex-col gap-2">
+      <fieldset
+        aria-invalid={!!error}
+        aria-describedby={error ? errorId : undefined}
+        className="flex flex-col gap-2"
+      >
         {options.map((option) => (
           <label
             key={option.value}
-            className={`flex items-center gap-2 ${
-              disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
-            }`}
+            className={`
+              flex items-center gap-2
+              ${
+                disabled || option.disabled
+                  ? "opacity-50 cursor-not-allowed"
+                  : "cursor-pointer"
+              }
+              ${optionClassName}
+            `}
           >
             <input
               type="radio"
+              aria-label={option.label}
               name={inputId}
               value={option.value}
               checked={value === option.value}
               onChange={(e) => onChange?.(e.target.value)}
               onBlur={onBlur}
-              disabled={disabled}
+              disabled={disabled || option.disabled}
               required={required}
               aria-invalid={!!error}
               aria-describedby={error ? errorId : undefined}
@@ -64,7 +78,7 @@ const RadioGroup = ({
             <span>{option.label}</span>
           </label>
         ))}
-      </div>
+      </fieldset>
 
       {error && (
         <p id={errorId} className="mt-1 text-sm text-red-500">

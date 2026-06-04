@@ -46,7 +46,6 @@ const TableBody = ({
       </tbody>
     );
   }
-
   return (
     <tbody>
       {data.map((row, rowIndex) => {
@@ -54,18 +53,19 @@ const TableBody = ({
 
         return (
           <tr
-            key={rowIndex}
+            key={String(row[rowKey])}
             className={`
-              ${striped && rowIndex % 2 === 0 ? "bg-gray-50" : ""}
-
-              hover:bg-gray-100
-            `}
+                ${isSelected ? "bg-blue-50" : ""}
+                ${striped && rowIndex % 2 === 0 ? "bg-gray-50" : ""}
+                hover:bg-gray-100
+              `}
           >
             {selectable && (
               <td className="border px-4 py-2">
                 <input
                   type="checkbox"
                   checked={isSelected}
+                  aria-label={`Select row ${String(row[rowKey])}`}
                   onChange={(e) => onRowSelect?.(row, e.target.checked)}
                 />
               </td>

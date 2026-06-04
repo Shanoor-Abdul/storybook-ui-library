@@ -11,7 +11,7 @@ const meta: Meta<typeof RadioGroup> = {
     docs: {
       description: {
         component:
-          "Reusable RadioGroup component used for selecting a single option from a list.",
+          "Reusable RadioGroup component supporting validation, accessibility, disabled options and custom styling.",
       },
     },
   },
@@ -59,6 +59,14 @@ export const Default: Story = {
   },
 };
 
+export const Required: Story = {
+  args: {
+    label: "Gender",
+    options,
+    required: true,
+  },
+};
+
 export const Selected: Story = {
   args: {
     label: "Gender",
@@ -67,11 +75,25 @@ export const Selected: Story = {
   },
 };
 
-export const Disabled: Story = {
+export const DisabledOption: Story = {
   args: {
     label: "Gender",
-    options,
-    disabled: true,
+
+    options: [
+      {
+        label: "Male",
+        value: "male",
+      },
+      {
+        label: "Female",
+        value: "female",
+        disabled: true,
+      },
+      {
+        label: "Other",
+        value: "other",
+      },
+    ],
   },
 };
 
@@ -117,13 +139,16 @@ export const Large: Story = {
   },
 };
 
-export const CompleteExample: Story = {
+export const CustomStyling: Story = {
   args: {
     label: "Gender",
+
     options,
-    value: "male",
-    variant: "primary",
-    size: "md",
-    required: true,
+
+    className: "p-4",
+
+    labelClassName: "text-blue-600",
+
+    optionClassName: "text-gray-700",
   },
 };

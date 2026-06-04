@@ -7,6 +7,7 @@ const Card = ({
   footer,
   variant = "default",
   shadow = "md",
+  className,
 }: CardProps) => {
   const variants = {
     default: "bg-white",
@@ -28,6 +29,7 @@ const Card = ({
 
         ${variants[variant]}
         ${shadows[shadow]}
+        ${className}
       `}
     >
       {(title || subtitle) && (

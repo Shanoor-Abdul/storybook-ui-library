@@ -4,21 +4,30 @@ export interface TextAreaProps {
   label: string;
 
   value?: string;
+
   placeholder?: string;
 
   rows?: number;
 
   minLength?: number;
+
   maxLength?: number;
 
   showCharacterCount?: boolean;
-  showValidationMessage?: boolean;
 
   onChange?: (value: string) => void;
 
   helperText?: string;
+
   error?: string;
 
   disabled?: boolean;
+
   required?: boolean;
+
+  className?: string;
+
+  textareaClassName?: string;
+
+  labelClassName?: string;
 }

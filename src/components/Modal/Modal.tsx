@@ -10,10 +10,11 @@ const Modal = ({
   size = "md",
   closeOnOverlayClick = true,
   closeOnEsc = true,
+  className = "",
   onClose,
 }: ModalProps) => {
   useEffect(() => {
-    if (!closeOnEsc) return;
+    if (!open || !closeOnEsc) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -23,8 +24,22 @@ const Modal = ({
 
     document.addEventListener("keydown", handleKeyDown);
 
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [closeOnEsc, onClose]);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open, closeOnEsc, onClose]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const originalOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [open]);
 
   if (!open) return null;
 
@@ -34,6 +49,10 @@ const Modal = ({
     lg: "max-w-2xl",
     xl: "max-w-4xl",
   };
+
+  const titleId = title
+    ? `${title.replace(/\s+/g, "-").toLowerCase()}-title`
+    : undefined;
 
   return (
     <div
@@ -60,6 +79,10 @@ const Modal = ({
       />
 
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        onClick={(e) => e.stopPropagation()}
         className={`
           relative
           z-10
@@ -70,6 +93,7 @@ const Modal = ({
           shadow-lg
 
           ${sizes[size]}
+          ${className}
         `}
       >
         {(title || onClose) && (
@@ -82,16 +106,31 @@ const Modal = ({
               border-b
             "
           >
-            <h2
-              className="
-                text-lg
-                font-semibold
-              "
-            >
-              {title}
-            </h2>
+            {title && (
+              <h2
+                id={titleId}
+                className="
+                  text-lg
+                  font-semibold
+                "
+              >
+                {title}
+              </h2>
+            )}
 
-            <button onClick={onClose}>✕</button>
+            {onClose && (
+              <button
+                type="button"
+                aria-label="Close modal"
+                onClick={onClose}
+                className="
+                  text-gray-500
+                  hover:text-gray-700
+                "
+              >
+                ✕
+              </button>
+            )}
           </div>
         )}
 

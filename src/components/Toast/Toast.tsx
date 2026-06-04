@@ -8,11 +8,8 @@ interface ToastProps {
 const Toast = ({ toast, onClose }: ToastProps) => {
   const variants = {
     success: "bg-green-100 border-green-500 text-green-800",
-
     error: "bg-red-100 border-red-500 text-red-800",
-
     warning: "bg-yellow-100 border-yellow-500 text-yellow-800",
-
     info: "bg-blue-100 border-blue-500 text-blue-800",
   };
 
@@ -25,6 +22,8 @@ const Toast = ({ toast, onClose }: ToastProps) => {
 
   return (
     <div
+      role="region"
+      aria-live="polite"
       className={`
         relative
         min-w-[320px]
@@ -33,16 +32,40 @@ const Toast = ({ toast, onClose }: ToastProps) => {
         shadow-lg
         px-4
         py-3
-
+        animate-in
+        slide-in-from-right-4
+        duration-300
         ${variants[toast.variant]}
+        ${toast.className || ""}
       `}
     >
       <div className="flex items-start gap-3">
-        <span>{icons[toast.variant]}</span>
+        <span>
+          {toast.icon || icons[toast.variant]}
+        </span>
 
-        <p className="flex-1">{toast.message}</p>
+        <div className="flex-1">
+          <p className="break-words">
+            {toast.message}
+          </p>
 
-        <button onClick={() => onClose(toast.id)}>×</button>
+          {toast.action && (
+            <button
+              onClick={toast.action.onClick}
+              className="mt-2 text-sm font-medium underline"
+            >
+              {toast.action.label}
+            </button>
+          )}
+        </div>
+
+        <button
+          aria-label="Close notification"
+          onClick={() => onClose(toast.id)}
+          className="text-lg leading-none"
+        >
+          ×
+        </button>
       </div>
     </div>
   );

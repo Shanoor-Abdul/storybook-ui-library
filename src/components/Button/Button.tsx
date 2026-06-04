@@ -4,6 +4,9 @@ const Button = ({
   label,
   variant = "primary",
   disabled = false,
+  className,
+  leftIcon,
+  rightIcon,
   onClick,
 }: ButtonProps) => {
   const baseClasses = "px-4 py-2 rounded-md font-medium transition";
@@ -18,9 +21,11 @@ const Button = ({
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`${baseClasses} ${variants[variant]}`}
+      className={`${baseClasses} ${variants[variant]} ${className || ""}`}
     >
+      {leftIcon && <span className="mr-2">{leftIcon}</span>}
       {label}
+      {rightIcon && <span className="ml-2">{rightIcon}</span>}
     </button>
   );
 };

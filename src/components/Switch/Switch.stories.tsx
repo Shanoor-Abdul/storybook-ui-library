@@ -6,6 +6,14 @@ const meta: Meta<typeof Switch> = {
   title: "Components/Switch",
   component: Switch,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Accessible toggle switch supporting multiple variants, sizes, validation states and custom styling.",
+      },
+    },
+  },
 
   argTypes: {
     checked: {
@@ -89,12 +97,16 @@ export const Error: Story = {
   },
 };
 
-export const CompleteExample: Story = {
+export const CustomStyling: Story = {
   args: {
-    label: "Dark Mode",
+    label: "Custom Switch",
+
     checked: true,
-    variant: "primary",
-    size: "md",
-    required: true,
+
+    className: "p-4",
+
+    labelClassName: "text-blue-600 font-bold",
+
+    switchClassName: "shadow-lg",
   },
 };

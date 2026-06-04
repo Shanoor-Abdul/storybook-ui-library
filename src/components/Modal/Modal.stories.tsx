@@ -1,8 +1,7 @@
 import { useState } from "react";
-
 import type { Meta, StoryObj } from "@storybook/react-vite";
-
 import Modal from "./Modal";
+import type { ModalProps } from "./Modal.types";
 
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
@@ -25,7 +24,7 @@ export default meta;
 
 type Story = StoryObj<typeof Modal>;
 
-const ModalDemo = (args: any) => {
+const ModalDemo = (args: ModalProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -74,5 +73,41 @@ export const Large: Story = {
     title: "Large Modal",
 
     children: "Large content area",
+  },
+};
+
+export const Small: Story = {
+  render: (args) => <ModalDemo {...args} />,
+  args: {
+    size: "sm",
+    title: "Small Modal",
+    children: "Small modal content",
+  },
+};
+
+export const ExtraLarge: Story = {
+  render: (args) => <ModalDemo {...args} />,
+  args: {
+    size: "xl",
+    title: "Extra Large Modal",
+    children: "Extra large modal content",
+  },
+};
+
+export const NoOverlayClose: Story = {
+  render: (args) => <ModalDemo {...args} />,
+  args: {
+    title: "Protected Modal",
+    children: "Clicking outside will not close this modal.",
+    closeOnOverlayClick: false,
+  },
+};
+
+export const NoEscClose: Story = {
+  render: (args) => <ModalDemo {...args} />,
+  args: {
+    title: "ESC Disabled",
+    children: "Escape key will not close this modal.",
+    closeOnEsc: false,
   },
 };

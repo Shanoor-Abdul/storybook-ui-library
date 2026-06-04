@@ -1,6 +1,12 @@
 import type { TooltipProps } from "./Tooltip.types";
 
-const Tooltip = ({ content, children, position = "top" }: TooltipProps) => {
+const Tooltip = ({
+  content,
+  children,
+  position = "top",
+  className = "",
+  contentClassName = "",
+}: TooltipProps) => {
   const positions = {
     top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
 
@@ -12,29 +18,44 @@ const Tooltip = ({ content, children, position = "top" }: TooltipProps) => {
   };
 
   return (
-    <div className="relative inline-block group">
+    <div
+      className={`relative inline-block group ${className}`}
+      tabIndex={0}
+    >
       {children}
 
       <div
+        role="tooltip"
         className={`
           absolute
           z-50
-          whitespace-nowrap
+
+          max-w-xs
 
           rounded-md
+
           bg-black
+
           px-2
           py-1
 
           text-xs
           text-white
 
+          whitespace-normal
+
           opacity-0
+
           transition-opacity
+          duration-200
+
+          pointer-events-none
 
           group-hover:opacity-100
+          group-focus-within:opacity-100
 
           ${positions[position]}
+          ${contentClassName}
         `}
       >
         {content}

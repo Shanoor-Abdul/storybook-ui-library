@@ -10,6 +10,7 @@ const Checkbox = ({
   disabled = false,
   error = "",
   required = false,
+  className,
 }: CheckboxProps) => {
   const inputId = id || label.toLowerCase().replace(/\s+/g, "-");
 
@@ -28,7 +29,7 @@ const Checkbox = ({
   };
 
   return (
-    <div className="mb-4">
+    <div className={className || ""}>
       <div className="flex items-center gap-2">
         <input
           id={inputId}
@@ -40,26 +41,22 @@ const Checkbox = ({
           aria-invalid={!!error}
           aria-describedby={error ? errorId : undefined}
           className={`
-            rounded
-            border-gray-300
-            focus:ring-2
-
-            ${sizes[size]}
-            ${variants[variant]}
-
-            ${disabled ? "cursor-not-allowed opacity-50" : ""}
-
-            ${error ? "border-red-500 ring-red-500" : ""}
-          `}
+          rounded
+          border-gray-300
+          focus:ring-2
+          ${sizes[size]}
+          ${variants[variant]}
+          ${disabled ? "cursor-not-allowed opacity-50" : ""}
+          ${error ? "border-red-500 ring-red-500" : ""}
+        `}
         />
 
         <label
           htmlFor={inputId}
           className={`
-            font-medium
-
-            ${disabled ? "opacity-50 cursor-not-allowed" : ""}
-          `}
+          font-medium
+          ${disabled ? "opacity-50 cursor-not-allowed" : ""}
+        `}
         >
           {label}
         </label>

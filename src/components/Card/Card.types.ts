@@ -12,4 +12,6 @@ export interface CardProps {
   variant?: "default" | "outlined";
 
   shadow?: "none" | "sm" | "md" | "lg";
+
+  className?: string;
 }

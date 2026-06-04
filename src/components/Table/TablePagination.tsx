@@ -53,6 +53,13 @@ const TablePagination = ({
 
         <button
           disabled={currentPage === 1}
+          className="
+                px-3 py-1
+                border
+                rounded
+                disabled:opacity-50
+                disabled:cursor-not-allowed
+              "
           onClick={() => onPageChange?.(currentPage - 1)}
         >
           Prev
@@ -64,6 +71,13 @@ const TablePagination = ({
 
         <button
           disabled={currentPage === totalPages}
+          className="
+            px-3 py-1
+            border
+            rounded
+            disabled:opacity-50
+            disabled:cursor-not-allowed
+          "
           onClick={() => onPageChange?.(currentPage + 1)}
         >
           Next
